@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import "@fontsource/archivo/300.css";
 import "@fontsource/archivo/300-italic.css";
@@ -15,9 +16,10 @@ export default function Navbar(): JSX.Element {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const menuItems: MenuItem[] = [
-    { label: 'Work', href: '#' },
+    { label: 'Work', href: '/work' },
     {
       label: 'News',
       href: '#',
@@ -84,6 +86,7 @@ export default function Navbar(): JSX.Element {
                 }}
               >
                 <button
+                  onClick={() => item.href !== '#' && navigate(item.href)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
